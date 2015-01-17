@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Slack = require('slack-client');
 
-var token = 'xoxb-3428109437-2T1KTl6QaYDSukKXXjMIEw5g';
+//var token = 'xoxb-3428109437-2T1KTl6QaYDSukKXXjMIEw5g'; // iflux
+var token = 'xoxb-3441152966-EdUhN0C1zGNYflTiFSzdfTMV'; // novaccess
 var autoReconnect = true;
 var autoMark = true;
 
