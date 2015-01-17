@@ -19,7 +19,6 @@ slack.on('error', function (e) {
 });
 
 slack.on('message', function (message) {
-  console.log(message);
   var type = message.type,
     channel = slack.getChannelGroupOrDMByID(message.channel),
     user = slack.getUserByID(message.user),
