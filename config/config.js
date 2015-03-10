@@ -8,10 +8,12 @@ dotenv.load();
 var config = {
   development: {
     root: rootPath,
+		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
+		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
       name: 'iFLUX-Slack-Gateway'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
 		slack: {
 			token: process.env.SLACK_BOT_TOKEN
 		}
@@ -19,10 +21,12 @@ var config = {
 
   test: {
     root: rootPath,
+		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
+		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
       name: 'iFLUX-Slack-Gateway'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
 		slack: {
 			token: process.env.SLACK_BOT_TOKEN
 		}
@@ -30,10 +34,12 @@ var config = {
 
   production: {
     root: rootPath,
+		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
+		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
       name: 'iFLUX-Slack-Gateway'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
 		slack: {
 			token: process.env.SLACK_BOT_TOKEN
 		}
@@ -41,10 +47,12 @@ var config = {
 
 	docker: {
 		root: rootPath,
+		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
+		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
 		app: {
 			name: 'iFLUX-Slack-Gateway'
 		},
-		port: process.env.PORT || 3000,
+		port: process.env.PORT || 3001,
 		slack: {
 			token: process.env.SLACK_BOT_TOKEN
 		}
