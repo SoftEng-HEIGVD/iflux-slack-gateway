@@ -52,7 +52,7 @@ var config = {
 		app: {
 			name: 'iFLUX-Slack-Gateway'
 		},
-		port: process.env.PORT || 3001,
+		port: 3000,
 		slack: {
 			token: process.env.SLACK_BOT_TOKEN
 		}
