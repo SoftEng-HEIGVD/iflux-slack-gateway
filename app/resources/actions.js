@@ -1,9 +1,16 @@
 var
 	_ = require('underscore'),
+	domain = require('domain'),
+	d = domain.create(),
 	express = require('express'),
 	router = express.Router(),
-	config = require('../../config/config')
+	config = require('../../config/config'),
 	Slack = require('slack-client');
+
+d.on('error', function(err) {
+	console.log("Unable to process actions.");
+	console.log(err);
+});
 
 var autoReconnect = true;
 var autoMark = true;
@@ -19,20 +26,21 @@ slack.on('error', function (e) {
   console.log(e);
 });
 
-slack.on('message', function (message) {
-  var type = message.type,
-    channel = slack.getChannelGroupOrDMByID(message.channel),
-    user = slack.getUserByID(message.user),
-    time = message.ts,
-    text = message.text,
-    response = '';
-  console.log('Received: %s %s @%s %s "%s"', type, (channel.is_channel ? '#' : '') + channel.name, user.name, time, text);
-});
-
-
-slack.on('star_added', function(event) {
-  console.log("You are a STAR: " + event.item.message.text);
-});
+// TODO: Better error handling. Crash the app when error occurs.
+//slack.on('message', function (message) {
+//  var type = message.type,
+//    channel = slack.getChannelGroupOrDMByID(message.channel),
+//    user = slack.getUserByID(message.user),
+//    time = message.ts,
+//    text = message.text,
+//    response = '';
+//  console.log('Received: %s %s @%s %s "%s"', type, (channel.is_channel ? '#' : '') + channel.name, user.name, time, text);
+//});
+//
+//
+//slack.on('star_added', function(event) {
+//  console.log("You are a STAR: " + event.item.message.text);
+//});
 
 slack.login();
 
@@ -43,24 +51,26 @@ module.exports = function (app) {
 router.route('/')
 	/* POST actions */
 	.post(function (req, res) {
-  	var actions = req.body;
+		d.run(function() {
+			var actions = req.body;
 
-  	console.log("Received " + actions.length + " actions on REST API.");
+			console.log("Received " + actions.length + " actions on REST API.");
 
-		_.each(actions, function(action) {
-			console.log("Action: " + action.type);
+			_.each(actions, function (action) {
+				console.log("Action: " + action.type);
 
-			if (action.type === "sendSlackMessage") {
-				var channelName = action.properties.channel;
-				var message = action.properties.message;
-				var channel = slack.getChannelByName(channelName);
+				if (action.type === "sendSlackMessage") {
+					var channelName = action.properties.channel;
+					var message = action.properties.message;
+					var channel = slack.getChannelByName(channelName);
 
 					console.log("Sending " + message + " to " + channelName);
-				if (channel !== undefined && message !== undefined && message !== "") {
-					channel.send(message);
+					if (channel !== undefined && message !== undefined && message !== "") {
+						channel.send(message);
+					}
 				}
-			}
-		});
+			});
 
-		res.status(204).send();
+			res.status(204).send();
+		});
 	});
