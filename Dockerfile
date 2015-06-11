@@ -11,10 +11,10 @@ RUN mkdir -p /nodejs/iflux-slack && cp -a /tmp/node_modules /nodejs/iflux-slack
 
 ADD . /nodejs/iflux-slack
 
-RUN useradd -m -r -U iflux \
-	&& chown -R iflux:iflux /nodejs/iflux-slack
+RUN useradd -m -r -U ifluxslack -u 1111 \
+	&& chown -R ifluxslack:ifluxslack /nodejs/iflux-slack
 
-USER iflux
+USER ifluxslack
 
 WORKDIR /nodejs/iflux-slack
 

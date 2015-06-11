@@ -17,7 +17,9 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
-			token: process.env.SLACK_BOT_TOKEN
+			token: process.env.SLACK_BOT_TOKEN,
+			storageEnabled: false,
+			storagePath: ""
 		}
   },
 
@@ -30,7 +32,9 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
-			token: process.env.SLACK_BOT_TOKEN
+			token: process.env.SLACK_BOT_TOKEN,
+			storageEnabled: false,
+			storagePath: ""
 		}
   },
 
@@ -43,7 +47,9 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
-			token: process.env.SLACK_BOT_TOKEN
+			token: process.env.SLACK_BOT_TOKEN,
+			storageEnabled: false,
+			storagePath: ""
 		}
   },
 
@@ -56,7 +62,9 @@ var config = {
 		},
 		port: 3000,
 		slack: {
-			token: process.env.SLACK_BOT_TOKEN
+			token: process.env.SLACK_BOT_TOKEN,
+			storageEnabled: true,
+			storagePath: "/data/slack"
 		}
 	}
 };
