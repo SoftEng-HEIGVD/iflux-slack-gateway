@@ -33,7 +33,7 @@ router.route('/')
 
 					console.log("Action: " + action.typeId);
 
-					if (action.typeId === "47EfOa2vFhTZ") {
+					if (action.typeId === config.app.actionType) {
 						var channelName = action.payload.channel;
 						var message = action.payload.message;
 						var channel = slack.getChannelByName(channelName);
