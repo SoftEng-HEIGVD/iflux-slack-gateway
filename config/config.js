@@ -18,6 +18,7 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
+			enabled: true,
 			storageEnabled: true,
 			storagePath: '/tmp'
 		}
@@ -32,6 +33,7 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
+			enabled: false,
 			storageEnabled: false,
 			storagePath: ""
 		}
@@ -46,6 +48,7 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
+			enabled: process.env.COMMON_SLACK_ENABLE,
 			storageEnabled: false,
 			storagePath: ""
 		}
@@ -60,6 +63,7 @@ var config = {
 		},
 		port: 3000,
 		slack: {
+			enabled: process.env.COMMON_SLACK_ENABLE,
 			storageEnabled: true,
 			storagePath: "/data/slack"
 		}
