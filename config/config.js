@@ -17,8 +17,8 @@ var config = {
     },
     port: process.env.PORT || 3001,
 		slack: {
-			storageEnabled: false,
-			storagePath: ""
+			storageEnabled: true,
+			storagePath: '/tmp'
 		}
   },
 

@@ -29,34 +29,19 @@ router.route('/')
 
 			_.each(actions, function (action) {
 				if (_.isUndefined(connections[action.instanceId])) {
-					var slackConfig = slackConfigService.get(action.instanceId);
+					var slack = slackConfigService.get(action.instanceId).slack;
 
-					var slack = new Slack(slackConfig.token, false, true);
+					console.log("Action: " + action.typeId);
 
-					slack.on('open', function () {
-					  console.log('Welcome to Slack. You are @%s of %s', slack.self.name, slack.team.name);
-					});
+					if (action.typeId === "47EfOa2vFhTZ") {
+						var channelName = action.payload.channel;
+						var message = action.payload.message;
+						var channel = slack.getChannelByName(channelName);
 
-					slack.on('error', function (e) {
-					  console.log("Slack error");
-					  console.log(e);
-					});
-
-					connections[action.instanceId] = slack;
-				}
-
-				console.log("Action: " + action.type);
-
-				if (action.type === "sendSlackMessage") {
-					slack.login();
-
-					var channelName = action.payload.channel;
-					var message = action.payload.message;
-					var channel = connections[action.instanceId].getChannelByName(channelName);
-
-					console.log("Sending " + message + " to " + channelName);
-					if (channel !== undefined && message !== undefined && message !== "") {
-						channel.send(message);
+						console.log("Sending " + message + " to " + channelName);
+						if (channel !== undefined && message !== undefined && message !== "") {
+							channel.send(message);
+						}
 					}
 				}
 			});
