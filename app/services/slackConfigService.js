@@ -46,7 +46,12 @@ module.exports = {
 
 	save: function() {
 		if (config.slack.storageEnabled) {
-			fs.writeFile(config.slack.storagePath + '/instances.json', JSON.stringify(slackConfig), function (err) {
+			var configToSave = _.reduce(slackConfig, function(memo, config, key) {
+				memo[key] = { conf: config.conf };
+				return memo;
+			}, {});
+
+			fs.writeFile(config.slack.storagePath + '/instances.json', JSON.stringify(configToSave), function (err) {
 				if (err) {
 					console.log(err);
 				}
