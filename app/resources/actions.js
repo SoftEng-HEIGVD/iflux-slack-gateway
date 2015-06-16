@@ -31,9 +31,9 @@ router.route('/')
 				if (_.isUndefined(connections[action.instanceId])) {
 					var slack = slackConfigService.get(action.instanceId).slack;
 
-					console.log("Action: " + action.typeId);
+					console.log("Action: " + action.type);
 
-					if (action.typeId === config.app.actionType) {
+					if (action.type === config.app.actionType) {
 						var channelName = action.payload.channel;
 						var message = action.payload.message;
 						var channel = slack.getChannelByName(channelName);
