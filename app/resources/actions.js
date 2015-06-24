@@ -28,8 +28,8 @@ router.route('/')
 			console.log("Received " + actions.length + " actions on REST API.");
 
 			_.each(actions, function (action) {
-				if (_.isUndefined(connections[action.instanceId])) {
-					var slack = slackConfigService.get(action.instanceId).slack;
+				if (_.isUndefined(connections[action.actionTargetId])) {
+					var slack = slackConfigService.get(action.actionTargetId).slack;
 
 					console.log("Action: " + action.type);
 
