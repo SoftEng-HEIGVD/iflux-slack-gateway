@@ -14,7 +14,7 @@ var config = {
 		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
       name: 'iFLUX-Slack-Gateway',
-	    actionType: process.env.SLACK_ACTION_TYPE,
+	    actionType: process.env.SLACK_ACTION_TYPE
     },
     port: process.env.PORT || 3001,
 		slack: {
@@ -29,7 +29,8 @@ var config = {
 		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
 		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
-      name: 'iFLUX-Slack-Gateway'
+      name: 'iFLUX-Slack-Gateway',
+	    actionType: process.env.SLACK_ACTION_TYPE
     },
     port: process.env.PORT || 3001,
 		slack: {
@@ -44,7 +45,8 @@ var config = {
 		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
 		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
     app: {
-      name: 'iFLUX-Slack-Gateway'
+      name: 'iFLUX-Slack-Gateway',
+	    actionType: process.env.SLACK_ACTION_TYPE
     },
     port: process.env.PORT || 3001,
 		slack: {
@@ -59,7 +61,8 @@ var config = {
 		baseUrl: process.env.IFLUX_SERVER_URL || 'http://www.iflux.io',
 		siteUrl: process.env.IFLUX_SITE_URL || 'http://www.iflux.io',
 		app: {
-			name: 'iFLUX-Slack-Gateway'
+			name: 'iFLUX-Slack-Gateway',
+			actionType: process.env.SLACK_ACTION_TYPE
 		},
 		port: 3000,
 		slack: {
