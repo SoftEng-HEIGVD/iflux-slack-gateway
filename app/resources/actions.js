@@ -25,22 +25,25 @@ router.route('/')
 		d.run(function() {
 			var actions = req.body;
 
-			console.log("Received " + actions.length + " actions on REST API.");
+			console.log('Received %s action(s)', actions.length);
 
 			_.each(actions, function (action) {
-				if (_.isUndefined(connections[action.actionTargetId])) {
-					var slack = slackConfigService.get(action.actionTargetId).slack;
+				if (_.isUndefined(connections[action.target])) {
+					var slack = slackConfigService.get(action.target).slack;
 
-					console.log("Action: " + action.type);
+					console.log('Action: %s', action.type);
 
 					if (action.type === config.app.actionType) {
-						var channelName = action.payload.channel;
-						var message = action.payload.message;
+						var channelName = action.properties.channel;
+						var message = action.properties.message;
 						var channel = slack.getChannelByName(channelName);
 
-						console.log("Sending " + message + " to " + channelName);
 						if (channel !== undefined && message !== undefined && message !== "") {
+							console.log('Send a message on [%s]: %s', channelName, message);
 							channel.send(message);
+						}
+						else {
+							console.log('Nothing sent, the message was empty!');
 						}
 					}
 				}

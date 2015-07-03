@@ -11,8 +11,8 @@ module.exports = function (app) {
 
 router.route('/')
 	.post(function (req, res) {
-		if (req.body.actionTargetId) {
-			slackConfig.upsert(req.body.actionTargetId, req.body.properties);
+		if (req.body.target) {
+			slackConfig.upsert(req.body.target, req.body.properties);
 		}
 
 		return res.status(204).end();
