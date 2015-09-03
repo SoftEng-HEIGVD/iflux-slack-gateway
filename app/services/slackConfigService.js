@@ -7,7 +7,7 @@ var
 var slackConfig = {};
 
 function initSlack(config) {
-	var slack = new Slack(config.conf.token, false, true);
+	var slack = new Slack(config.conf.token, true, true);
 
 	slack.on('open', function () {
 		console.log('Welcome to Slack. You are @%s of %s', slack.self.name, slack.team.name);
